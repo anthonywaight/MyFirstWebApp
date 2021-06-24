@@ -1,0 +1,2 @@
+# MyFirstWebApp
+Django web application
