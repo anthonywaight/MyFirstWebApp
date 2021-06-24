@@ -61,3 +61,13 @@ def register(request):
         return HttpResponseRedirect(reverse("index"))
     else:
         return render(request, "auctions/register.html")
+
+def createListing(request):
+    if request.method =="POST":
+        # Attempt to create listing
+        listingTitle = request.POST["listingTitle"]
+        listingPrice = request.POST["listingPrice"]
+        return render(request, "auctions/index.html")
+    else:
+        return render(request,"auctions/createListing.html")
+    

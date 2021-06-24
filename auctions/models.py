@@ -14,6 +14,7 @@ class Listing(models.Model):
     description = models.CharField(max_length=128)
     bid = models.ForeignKey(Bid, on_delete=models.CASCADE,default=1)
     lister = models.ForeignKey(User, on_delete=models.CASCADE,default=1)
+    image = field_name = models.ImageField(upload_to=None, height_field=None, width_field=None, max_length=100)
     
 class Comments(models.Model):
     comment = models.CharField(max_length=128)
