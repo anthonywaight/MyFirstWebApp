@@ -2,6 +2,13 @@
 
 {% block body %}
     <h2>Active Listings</h2>
+    
+    {% for listingTitle in listingTitle %}
+    <ul class="list-group">
+        
+            <li class="list-group-item">{{ listingTitle }}</li>
+            <li class="list-group-item">{{ listingPrice }}</li>
+      </ul>
+    {% endfor %}
 
-    TODO
 {% endblock %}

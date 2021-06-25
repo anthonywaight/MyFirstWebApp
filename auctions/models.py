@@ -5,19 +5,24 @@ class User(AbstractUser):
    pass
 
 class Bid(models.Model):
-    bidPrice = models.DecimalField(max_digits=7,decimal_places=2)
-    bidder = models.ForeignKey(User, on_delete=models.CASCADE,default=1)
+    user = models.CharField(default=None,max_length=64)
+    title = models.CharField(default=None,max_length=64)
+    listingid = models.IntegerField(default=None)
+    bid = models.IntegerField(default=None)
 
 
 class Listing(models.Model):
-    price = models.DecimalField(max_digits=7,decimal_places = 2)
-    description = models.CharField(max_length=128)
-    bid = models.ForeignKey(Bid, on_delete=models.CASCADE,default=1)
-    lister = models.ForeignKey(User, on_delete=models.CASCADE,default=1)
-    image = field_name = models.ImageField(upload_to=None, height_field=None, width_field=None, max_length=100)
+    seller = models.CharField(default=None,max_length=64)
+    title = models.CharField(default=None,max_length=64)
+    description = models.TextField(default=None)
+    starting_bid = models.IntegerField(default=None)
+    category = models.CharField(default=None,max_length=64)
+    image_link = models.CharField(max_length=200, blank=True, null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    #listingImage = models.ImageField(upload_to=None, height_field=None, width_field=None, max_length=100)
     
 class Comments(models.Model):
-    comment = models.CharField(max_length=128)
-    commentPoster = models.ForeignKey(User, on_delete=models.CASCADE,default=1)
-    upVotes = models.IntegerField()
-    downVotes = models.IntegerField()
+    user = models.CharField(default=None,max_length=64)
+    comment = models.CharField(default=None,max_length=64)
+    listingid = models.IntegerField(default=None)
+    timestamp = models.DateTimeField(auto_now_add=True)

@@ -3,9 +3,12 @@ from django.db import IntegrityError
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
+from django.contrib.auth.decorators import login_required
 
 from .models import User
+from .models import *
 
+newListing = {}
 
 def index(request):
     return render(request, "auctions/index.html")
@@ -62,12 +65,14 @@ def register(request):
     else:
         return render(request, "auctions/register.html")
 
+@login_required(login_url='/login')
 def createListing(request):
     if request.method =="POST":
         # Attempt to create listing
         listingTitle = request.POST["listingTitle"]
         listingPrice = request.POST["listingPrice"]
-        return render(request, "auctions/index.html")
+        return render(request, "auctions/index.html", {"listingTitle": listingTitle,"listingPrice": listingPrice
+        })
     else:
         return render(request,"auctions/createListing.html")
     
